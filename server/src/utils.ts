@@ -11,7 +11,8 @@ const paginateResults = ({
 }) => {
     if (pageSize < 1) return [];
 
-    if (!cursor) return results.slice(0, pageSize);
+    if (! cursor) return results.slice(0, pageSize);
+
     const cursorIndex = results.findIndex(item => {
         // if an item has a `cursor` on it, use that, otherwise try to generate one
         let itemCursor = item.cursor ? item.cursor : getCursor(item);
@@ -19,6 +20,8 @@ const paginateResults = ({
         // if there's still not a cursor, return false by default
         return itemCursor ? cursor === itemCursor : false;
     });
+
+    // console.log('here', )
 
     return cursorIndex >= 0
         ? cursorIndex === results.length - 1 // don't let us overflow
@@ -29,15 +32,14 @@ const paginateResults = ({
             )
         : results.slice(0, pageSize);
 
-    results.slice(cursorIndex >= 0 ? cursorIndex + 1 : 0, cursorIndex >= 0);
+    // results.slice(cursorIndex >= 0 ? cursorIndex + 1 : 0, cursorIndex >= 0);
 }
 
-const getStore = () => {
-    return { }
-}
+// const getStore = () => {
+//     return { }
+// }
 
 export {
-    paginateResults,
-    getStore
+    paginateResults
 }
     

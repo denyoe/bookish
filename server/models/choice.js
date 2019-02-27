@@ -7,7 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     Choice.belongsToMany(models.Choice, {
       through: 'question-choices',
       as: 'questions',
-      foreignKey: 'choice_id'
+      otherKey: {
+        name: 'question_id',
+        field: 'question_id'
+      },
+      foreignKey: {
+        name: 'choice_id',
+        field: 'choice_id'
+      }
     })
   };
   return Choice;

@@ -5,7 +5,17 @@ const typeDefs = gql`
     
     type Query {
         info: String!
-        questions: [Question]!
+        questions(
+            """
+            The number of results to show. Must be >= 1. Default = 20
+            """ 
+            pageSize: Int
+
+            """
+            If you add a cursor here, it will only return results _after_ this cursor
+            """
+            after: String
+        ): QuestionConnection!
         question(id: ID!): Question
         questionsByType(type: QuestionType): [Question]!
     }
@@ -17,10 +27,16 @@ const typeDefs = gql`
         choices: [Choice!]!
     }
 
+    type QuestionConnection {
+        cursor: String
+        hasMore: Boolean!
+        questions: [Question]!
+    }
+
     type Choice {
         id: ID!
-        body: String
-        isCorrect: Boolean!
+        body: String,
+        correct: String
     }
 
     enum QuestionType {

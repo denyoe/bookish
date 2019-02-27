@@ -39,7 +39,22 @@ const models = require('../../models')
 // }
 
 const getQuestions = async () => {
-    const found = await models.Question.findAll()
+    const found = await models.Question.findAll({
+        include: [{
+            // all: true
+            model: models.Choice,
+            as: 'choices'
+        }]
+    })
+
+    // Append isCorrect attribute from 'question-choices to each choice
+    found.map(item => {
+        item.choices.map(choice => {
+            choice['correct'] = choice['question-choices'].isCorrect
+        })
+    })
+
+    // console.log(found[0].choices[0]['isCorrect'])
 
     return found && found.length
         ? found
