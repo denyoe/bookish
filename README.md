@@ -1,8 +1,10 @@
-## Technical test - ContentSquare
+## Bookish - Quiz
 
 ### Description
 
-...
+Everyone can appreciate great literature. There's something about that opening line that can just hook you in; and famous opening lines, there have been a few over the centuries. Here's your shot at proving how well you know them! :)
+
+---
 
 ### Instructions
 
@@ -15,18 +17,16 @@
 6. Run Seeders `knex seed:run --env development` (Default Password: `password`)
 7. Start Server with `yarn run dev`
 
-Server API URL: `http://localhost:3000/`
+Server API URL: `http://localhost:4000/`
 
 You can Run the tests with: `yarn test`
 
+---
 
-#### Misc
-1. Create Model and Migration: `node_modules/.bin/sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string`
+#### Client (ReactJS)
+1. Ensure the NodeJS server is running on port ***4000***
+2. Go to the client directory: `cd client`
+3. Install depencencies with: `yarn install`
+4. Run the App with: `yarn start`
 
-2. Rollback all migration: `node_modules/.bin/sequelize db:migrate:undo` or individual migration `node_modules/.bin/sequelize db:migrate:undo:all --to XXXXXXXXXXXXXX-create-questions.js`
-
-3. Running seeds: `node_modules/.bin/sequelize db:seed:all` or `node_modules/.bin/sequelize db:seed:undo`
-
-4. Creating Seeders: `node_modules/.bin/sequelize seed:generate --name demo-questions`
-
-5. Creating migrations: `sequelize migration:generate --name associate-product-tag`
+The application should now be accessible at `http://localhost:3000/`

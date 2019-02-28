@@ -1,7 +1,7 @@
 {
 	"name": "literate-quiz",
 	"version": "1.0.0",
-	"description": "Quiz API",
+	"description": "Bookish Quiz API",
 	"author": "Marcus Ekon <marcus.ekon@gmail.com>",
 	"private": true,
 	"scripts": {
