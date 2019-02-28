@@ -1,7 +1,6 @@
 // const { DataSource } = require('apollo-datasource');
-// const questions = require('../../models/question')()
-// const choices = require('../../models/choice')
-const models = require('../../models')
+import Sequelize from 'sequelize'
+const models = require('../db/models')
 
 // class QuestionAPI extends DataSource {
 //     constructor({ store }) {
@@ -37,6 +36,8 @@ const models = require('../../models')
 //                 : []
 //     }
 // }
+
+const Op = Sequelize.Op
 
 const getQuestions = async () => {
     const found = await models.Question.findAll({

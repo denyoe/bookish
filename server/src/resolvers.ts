@@ -7,9 +7,6 @@ export default {
         questions: async (_, { pageSize = 20, after }, {}) => {
             const allQuestions = await QuestionAPI.getQuestions()
 
-            // reverse chronological order
-            // allQuestions.reverse()
-
             const questions = paginateResults({
                 after,
                 pageSize,

@@ -1,13 +1,13 @@
-import express from 'express'
-import cors from 'cors'
-import logger from 'morgan'
-import bodyParser from 'body-parser'
-import indexRouter from './routes/index'
+// import express from 'express'
+// import cors from 'cors'
+// import logger from 'morgan'
+// import bodyParser from 'body-parser'
+// import indexRouter from './routes/index'
+const dotenv = require('dotenv').config()
 
 const { ApolloServer } = require('apollo-server')
 // const { GraphQLServer } = require('graphql-yoga')
 
-const dotenv = require('dotenv').config()
 
 const typeDefs = require('./schema')
 
@@ -40,5 +40,7 @@ const server = new ApolloServer({
 // app.use(process.env.API_BASE + 'login', Auth.login)
 // app.use(process.env.API_BASE + 'user', userRouter)
 // app.use(process.env.API_BASE + 'channel', channelRouter)
+
+// console.log(process.env.NODE_ENV)
 
 export default server
