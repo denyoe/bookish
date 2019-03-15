@@ -21,6 +21,22 @@ Server API URL: `http://localhost:4000/`
 
 You can Run the tests with: `yarn test`
 
+##### Sample Query
+```
+query {
+  questions(pageSize: 3) {
+    questions {
+      id
+      body
+    	choices {
+        body,
+        correct
+      }
+    },
+  }
+}
+```
+
 ---
 
 #### Client (ReactJS)
