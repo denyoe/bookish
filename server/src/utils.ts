@@ -18,10 +18,10 @@ const paginateResults = ({
         let itemCursor = item.cursor ? item.cursor : getCursor(item);
 
         // if there's still not a cursor, return false by default
-        return itemCursor ? cursor === itemCursor : false;
+        return itemCursor ? parseInt(cursor) === itemCursor : false;
     });
 
-    // console.log('here', )
+    // console.log(cursorIndex, 'cursorIndex', cursor)
 
     return cursorIndex >= 0
         ? cursorIndex === results.length - 1 // don't let us overflow

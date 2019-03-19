@@ -22,7 +22,7 @@ import { IQuestion, IChoice } from '../util/types'
 // }
 
 type Props = {
-    body: String,
+    body: string,
     choices: any,
     onAnswerSelected: Function
 }
@@ -30,9 +30,9 @@ type Props = {
 const Question = ({ body, choices, onAnswerSelected }: Props) => {
     return (
         <div>
-            <h3>{body}</h3>
-            <div className="choice-list">
-                <ul>
+            <h3 className="question">{body}</h3>
+            <div>
+                <ul className="choice-list">
                     {
                         Object.keys(choices).map(idx => {
                             return <Choice key={idx} body={choices[idx]} question={body} handlerChoiceSelected={onAnswerSelected} />

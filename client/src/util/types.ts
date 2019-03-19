@@ -1,5 +1,5 @@
-export class Queue<T>{
-    _queue: T[];
+export class Queue<T> {
+    private _queue: T[];
 
     constructor(queue?: T[]) {
         this._queue = queue || [];
@@ -19,6 +19,30 @@ export class Queue<T>{
 
     get count(): number {
         return this._queue.length;
+    }
+}
+
+export class Stack<T> {
+    private _stack: T[]
+
+    constructor(stack?: T[]) {
+        this._stack = stack || []
+    }
+
+    push(item: T) {
+        this._stack.push(item)
+    }
+
+    pop(): T | undefined {
+        return this._stack.pop()
+    }
+
+    empty() {
+        this._stack = []
+    }
+
+    get count(): number {
+        return this._stack.length
     }
 }
 

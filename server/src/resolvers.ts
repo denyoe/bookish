@@ -3,14 +3,15 @@ import { paginateResults } from './utils'
 
 export default {
     Query: {
-        info: () => `This is the API of a the Bookish Quiz`,
+        info: () => `This is the API of the Bookish Quiz`,
         questions: async (_, { pageSize = 20, after }, {}) => {
             const allQuestions = await QuestionAPI.getQuestions()
 
             const questions = paginateResults({
                 after,
                 pageSize,
-                results: allQuestions
+                results: allQuestions,
+                // getCursor: (item) => item.id
             })
 
             return {

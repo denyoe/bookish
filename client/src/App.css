@@ -1,7 +1,9 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  max-width: 500px;
-  margin: 12vh auto;
+  /* max-width: 50%; */
+  margin: 6vh auto;
   padding: 52px 26px;
 }
 
@@ -29,7 +31,7 @@ body {
   font: 18px/26px 'Lusitana', Georgia, serif;
 }
 
-h1 {
+/* h1 {
   color: #b9b9b9;
   font-weight: normal;
   font-size: 36px;
@@ -39,28 +41,28 @@ h1 {
 a {
   color: hsl(220, 70%, 40%);
   text-decoration: none;
-}
+} */
 
 a:hover {
   text-decoration: underline;
 }
 
-ul {
+/* ul {
   padding: 0 0 0 26px;
-}
+} */
 
-li {
+/* li {
   padding-bottom: 13px;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .loading_spinner-wrap {
   width: 100%;
@@ -105,4 +107,119 @@ li {
     opacity: 0;
     transform: translateY(0);
   }
+}
+
+.container {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  height: 65vh;
+  /* max-width: 40%; */
+  max-width: 800px;
+  margin: 0 auto;
+  /* background: #fff; */
+  border-radius: 3px;
+  /* flex: 1 1 0%; */
+}
+
+@media (min-width: 769px) {
+  .container {
+    margin: 2.5rem auto;
+  }
+}
+
+.choice-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.question {
+  margin: 0;
+  padding: 0.5rem 2.5rem 1.5rem 2.5rem;
+}
+
+/* .choice-item {
+  border-top: 1px solid #eee;
+} */
+
+.choice-item:hover {
+  background-color: #eefbfe;
+}
+
+.radioCustomButton {
+  position: absolute;
+  width: auto;
+  opacity: 0;
+}
+
+.radioCustomButton,
+.radioCustomLabel {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radioCustomLabel {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.radioCustomButton ~ .radioCustomLabel:before {
+  position: absolute;
+  top: 20px;
+  left: 38px;
+  width: 28px;
+  height: 28px;
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.radioCustomButton:checked ~ .radioCustomLabel:before {
+  content: '';
+  background: #776859 url(./img/icon-check.svg) no-repeat;
+  /* background: #8bc53f url(./img/icon-check.svg) no-repeat; */
+  background-size: 27px;
+  border-color: #776859;
+  /* border-color: #8bc53f; */
+}
+
+/* Animation */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out 0.3s;
+}
+
+.fade-leave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }

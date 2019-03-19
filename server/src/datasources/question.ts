@@ -1,5 +1,5 @@
 // const { DataSource } = require('apollo-datasource');
-import Sequelize from 'sequelize'
+// import Sequelize from 'sequelize'
 const models = require('../db/models')
 
 // class QuestionAPI extends DataSource {
@@ -37,7 +37,7 @@ const models = require('../db/models')
 //     }
 // }
 
-const Op = Sequelize.Op
+// const Op = Sequelize.Op
 
 const getQuestions = async () => {
     const found = await models.Question.findAll({
@@ -50,6 +50,7 @@ const getQuestions = async () => {
 
     // Append isCorrect attribute from 'question-choices to each choice
     found.map(item => {
+        item['cursor'] = item.id
         item.choices.map(choice => {
             choice['correct'] = choice['question-choices'].isCorrect
         })
