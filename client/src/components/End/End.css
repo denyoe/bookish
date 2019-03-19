@@ -1,0 +1,39 @@
+h1 {
+  /*color: hsl(220, 20%, 70%);*/
+  color: #b9b9b9;
+  font-weight: normal;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+
+.end {
+    font-family: 18px/26px 'Lusitana', Georgia, serif;
+    font-weight: 500;
+    max-width: 500px;
+    margin: 6vh auto;
+    padding: 52px 26px;
+    text-align: left;
+}
+
+a {
+  color: hsl(220, 70%, 40%);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  padding-bottom: 13px;
+  list-style: none;
+}
+
+.end span.stats ul {
+  border-bottom: 1px solid #9c9c9c;
+  margin-bottom: 5vh;
+}

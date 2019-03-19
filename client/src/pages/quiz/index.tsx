@@ -6,12 +6,10 @@ import { GET_QUESTIONS } from '../../util/queries'
 import { Queue, Stack, IQuestion, IChoice } from '../../util/types'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import Progress from '../../components/Progress/Progress'
-// import { init } from '../../util/animations'
+import End from '../../components/End/End'
+import { shuffle } from '../../util/helper'
 
 interface IState {
-    // questions: IQuestion[],
-    // queue: Queue<IQuestion>,
-    // choices: any,
     current: any,
     score: number,
     total: number,
@@ -27,7 +25,7 @@ class Quiz extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
 
-        this.state = {            // queue: new Queue<IQuestion>(),
+        this.state = {
             current: {},
             score: 0,
             total: 0,
@@ -84,14 +82,14 @@ class Quiz extends Component<IProps, IState> {
                     }
                 })
                 .then(({ data }) => {
-                    this.mapQuestions(data.questions.questions)
+                    const questions = shuffle<IQuestion>(data.questions.questions);
+                    this.mapQuestions(questions)
                     this.setState({ cursor: data.questions.cursor })
                 })
         }
     }
 
     mapQuestions(questions: Array<IQuestion>) {
-        // console.log(data.questions.questions)
         this.setState({
             count: this.state.count + questions.length
         })
@@ -166,6 +164,15 @@ class Quiz extends Component<IProps, IState> {
     render() {
         const isEmpty = Object.entries(this.state.current).length === 0 && this.state.current.constructor === Object
         // const isEmpty = true
+
+        if (this.state.cursor === null ) {
+            return (
+                <End 
+                    score={this.state.score}
+                    total={this.state.count}
+                />
+            )
+        }
 
         return isEmpty ? (
             <LoadingSpinner />

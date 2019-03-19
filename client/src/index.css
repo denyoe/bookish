@@ -6,6 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f5f2;
+  color: #333;
+  font: 18px/26px 'Lusitana', Georgia, serif;
 }
 
 code {

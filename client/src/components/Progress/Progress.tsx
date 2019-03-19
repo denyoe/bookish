@@ -10,7 +10,7 @@ const Progress = ({ score, total }: Props) => {
     // const progress = 25
     const progress = (score/total) * 100
 
-    console.log(progress, score, total)
+    // console.log(progress, score, total)
 
     const style = {
         width: progress + '%'

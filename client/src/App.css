@@ -1,9 +1,9 @@
 .App {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   text-align: center;
   /* max-width: 50%; */
-  margin: 6vh auto;
+  /* margin: 6vh auto; */
   padding: 52px 26px;
 }
 
@@ -23,13 +23,6 @@
   font-size: calc(10px + 2vmin);
   color: white;
 } */
-
-body {
-  /*background: hsl(220, 20%, 95%);*/
-  background-color: #f8f5f2;
-  color: #333;
-  font: 18px/26px 'Lusitana', Georgia, serif;
-}
 
 /* h1 {
   color: #b9b9b9;
@@ -110,13 +103,13 @@ a:hover {
 }
 
 .container {
-  /* position: relative; */
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  /* display: flex; */
+  /* flex-direction: column; */
   height: 65vh;
   /* max-width: 40%; */
   max-width: 800px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* background: #fff; */
   border-radius: 3px;
   /* flex: 1 1 0%; */
