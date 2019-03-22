@@ -1,0 +1,9 @@
+.feedback {
+    margin: 10vh;
+}
+
+.feedback span {
+  font-size: 3em;
+  display: block;
+  color: #555;
+}

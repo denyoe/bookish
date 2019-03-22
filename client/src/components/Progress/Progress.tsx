@@ -7,17 +7,14 @@ type Props = {
 }
 
 const Progress = ({ score, total }: Props) => {
-    // const progress = 25
-    const progress = (score/total) * 100
-
-    // console.log(progress, score, total)
+    const progress = (score / total) * 100
 
     const style = {
         width: progress + '%'
     }
 
     return (
-        <div>
+        <div className="progress">
             {score} / {total}
             <div className="meter clear animate">
                 <span style={style}><span></span></span>

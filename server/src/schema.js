@@ -20,6 +20,14 @@ const typeDefs = gql`
         questionsByType(type: QuestionType): [Question]!
     }
 
+    # type Mutation {
+    #     createQuestion(
+    #         question: Question
+    #         choices: [Choice!]
+    #     ): QuestionCreatedResponse!
+    #     createQuestions(): QuestionCreatedResponse!
+    # }
+
     type Question {
         id: ID!
         body: String

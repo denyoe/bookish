@@ -6,6 +6,7 @@ import { GET_QUESTIONS } from '../../util/queries'
 import { Queue, Stack, IQuestion, IChoice } from '../../util/types'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import Progress from '../../components/Progress/Progress'
+import Feedback from '../../components/Feedback/Feedback'
 import End from '../../components/End/End'
 import { shuffle } from '../../util/helper'
 
@@ -14,7 +15,8 @@ interface IState {
     score: number,
     total: number,
     count: number,
-    cursor: string | null
+    cursor: string | null,
+    status: string
 }
 interface IProps {}
 
@@ -30,7 +32,8 @@ class Quiz extends Component<IProps, IState> {
             score: 0,
             total: 0,
             count: 0,
-            cursor: '0'
+            cursor: '0',
+            status: ''
         }
 
         this.handlerAnswerSelected = this.handlerAnswerSelected.bind(this)
@@ -59,8 +62,14 @@ class Quiz extends Component<IProps, IState> {
 
     locally() {
         console.log('locally')
+
         // Restore Queue
-        this.queue(JSON.parse(localStorage.getItem('_queue') || '')._queue)
+        const queue = JSON.parse(localStorage.getItem('_queue') || '')._queue
+        if (this.state.cursor !== null && queue.length == 0 ) {
+            this.setState({ cursor: null })
+            this.remotely()
+        }
+        this.queue(queue)
         // Restore State
         const state = JSON.parse(localStorage.getItem('state') || '')
         this.setState(state)
@@ -85,6 +94,10 @@ class Quiz extends Component<IProps, IState> {
                     const questions = shuffle<IQuestion>(data.questions.questions);
                     this.mapQuestions(questions)
                     this.setState({ cursor: data.questions.cursor })
+                })
+                .catch((err) => {
+                    this.setState({ current: {} })
+                    console.log('Something went wrong...')
                 })
         }
     }
@@ -157,6 +170,8 @@ class Quiz extends Component<IProps, IState> {
         } else {
             this._missed.push(this.state.current)
         }
+
+        this.setState({ status: choice.correct })
         // Display Correct Answer
         // Activate Next Button
     }
@@ -190,6 +205,10 @@ class Quiz extends Component<IProps, IState> {
                             <Question body={this.state.current.body} choices={this.state.current.choices} onAnswerSelected={this.handlerAnswerSelected} />
                         </div>
                     </ReactCSSTransitionGroup>
+
+                    {/* <Feedback
+                        status={this.state.status}
+                    /> */}
 
                     <Progress
                         score={this.state.score}

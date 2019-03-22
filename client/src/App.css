@@ -1,6 +1,9 @@
 .App {
   /* display: flex; */
   /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   /* max-width: 50%; */
   /* margin: 6vh auto; */
@@ -106,10 +109,12 @@ a:hover {
   position: relative;
   /* display: flex; */
   /* flex-direction: column; */
-  height: 65vh;
+  /* height: auto; */
+  height: 64vh;
   /* max-width: 40%; */
   max-width: 800px;
   /* margin: 0 auto; */
+  margin-bottom: 5vh;
   /* background: #fff; */
   border-radius: 3px;
   /* flex: 1 1 0%; */
