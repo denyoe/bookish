@@ -65,10 +65,10 @@ class Quiz extends Component<IProps, IState> {
 
         // Restore Queue
         const queue = JSON.parse(localStorage.getItem('_queue') || '')._queue
-        if (this.state.cursor !== null && queue.length == 0 ) {
-            this.setState({ cursor: null })
-            this.remotely()
-        }
+        // if (this.state.cursor !== null && queue.length == 0 ) {
+        //     this.setState({ cursor: null })
+        //     this.remotely()
+        // }
         this.queue(queue)
         // Restore State
         const state = JSON.parse(localStorage.getItem('state') || '')

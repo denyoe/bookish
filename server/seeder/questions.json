@@ -3,19 +3,19 @@
         {
             "body": "It was the best of times, it was the worst of times",
             "choices": [
-                { "body": "" }
+                { "body": "Hey", "correct": true }
             ]
         },
         {
             "body": "All children, except one, grow up.",
             "choices": [
-                { "body": "The Adventures of Peter Pan" }
+                { "body": "The Adventures of Peter Pan", "correct": true }
             ]
         },
         {
             "body": "It was a pleasure to burn.",
             "choices": [
-                { "body": "Fahrenheit 451" }
+                { "body": "Fahrenheit 451", "correct": true }
             ]
         }
     ]

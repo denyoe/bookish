@@ -11,17 +11,17 @@ export default {
                 after,
                 pageSize,
                 results: allQuestions,
-                // getCursor: (item) => item.id
+                getCursor: (item) => item.id
             })
 
             return {
                 questions,
-                cursor: questions.length ? questions[questions.length - 1].cursor : null,
+                cursor: questions.length ? questions[questions.length - 1].id : null,
                 // if the cursor of the end of the paginated results is the same as the
                 // last item in _all_ results, then there are no more results after this
                 hasMore: questions.length
-                    ? questions[questions.length - 1].cursor !==
-                    allQuestions[allQuestions.length - 1].cursor
+                    ? questions[questions.length - 1].id !==
+                    allQuestions[allQuestions.length - 1].id
                     : false,
             }
         },

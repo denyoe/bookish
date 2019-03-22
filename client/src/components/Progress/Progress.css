@@ -1,24 +1,16 @@
 .meter { 
     display: flex;
     background: #777;
-    /* background: rgb(236, 227, 218); */
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
     border-radius: 25px;
     height: 20px;
-    /* position: relative; */
-    /* bottom: 0vh; */
-    /* position: fixed; */
-    /* bottom: 10vh; */
+    
     width: 40%;
     margin: 0 auto;
 
     flex-direction: column;
-    /* -webkit-box-align: center; */
-    /* align-items: center; */
-    /* -webkit-box-pack: center; */
     justify-content: center;
-    /* margin: 25px 0px; */
 }
 
 .meter > span {
@@ -28,7 +20,6 @@
   border-bottom-right-radius: 8px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  /* background-color: rgb(236, 227, 218); */
   background-color: #555;
   background-image: linear-gradient(
     center bottom,
@@ -41,8 +32,10 @@
   position: relative;
   overflow: hidden;
   -webkit-transition: width 1s ease;
+  -moz-transition: width 1s ease;
   -o-transition: width 1s ease;
   transition: width 1s ease;
+  animation: fill 1s ease;
 }
 
 .meter > span:after, .animate > span > span {
@@ -61,7 +54,6 @@
   );
   z-index: 1;
   background-size: 50px 50px;
-  /* animation: move 2s linear infinite; */
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top-left-radius: 20px;
@@ -85,6 +77,12 @@
   }
   100% {
     background-position: 50px 50px;
+  }
+}
+
+@keyframes fill {
+  0% {
+    width: 0;
   }
 }
 

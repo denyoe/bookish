@@ -3,11 +3,26 @@
 // import logger from 'morgan'
 // import bodyParser from 'body-parser'
 // import indexRouter from './routes/index'
+import mongoose from 'mongoose'
 const dotenv = require('dotenv').config()
 
 const { ApolloServer } = require('apollo-server')
 // const { GraphQLServer } = require('graphql-yoga')
 
+mongoose.connect(process.env.DB_URL || 'mongodb:localhost/test', { useNewUrlParser: true })
+const db = mongoose.connection
+// db.on('error', console.error.bind(console, 'connection error:'))
+db.on('error', (err) => console.log(err.message))
+db.once('open', () => console.log('Connection Established.'))
+
+db.on('disconnected', () => console.log('Connection Disconnected'))
+
+process.on('SIGINT', function () {
+    mongoose.connection.close(() => {
+        console.log('Mongoose default connection disconnected through app termination')
+        process.exit(0)
+    })
+})
 
 const typeDefs = require('./schema')
 

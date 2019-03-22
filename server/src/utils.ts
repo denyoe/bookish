@@ -15,13 +15,11 @@ const paginateResults = ({
 
     const cursorIndex = results.findIndex(item => {
         // if an item has a `cursor` on it, use that, otherwise try to generate one
-        let itemCursor = item.cursor ? item.cursor : getCursor(item);
+        let itemCursor = item.cursor ? item.cursor : getCursor(item)
 
         // if there's still not a cursor, return false by default
-        return itemCursor ? parseInt(cursor) === itemCursor : false;
-    });
-
-    // console.log(cursorIndex, 'cursorIndex', cursor)
+        return itemCursor ? cursor === itemCursor : false
+    })
 
     return cursorIndex >= 0
         ? cursorIndex === results.length - 1 // don't let us overflow

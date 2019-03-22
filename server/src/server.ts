@@ -1,5 +1,4 @@
 import app from './app'
-const models = require('./db/models')
 
 const PORT = process.env.PORT || 3000
 
