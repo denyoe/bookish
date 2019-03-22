@@ -3,7 +3,7 @@ const fs = require('fs')
 const JSONStream = require('JSONStream')
 const mongoose = require('mongoose')
 const es = require('event-stream')
-const Question = require('../src/db/models/question')
+const Question = require('./question.js')
 
 const filePath = path.join(__dirname, 'questions.json')
 
