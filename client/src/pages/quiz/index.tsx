@@ -91,13 +91,13 @@ class Quiz extends Component<IProps, IState> {
                     }
                 })
                 .then(({ data }) => {
-                    const questions = shuffle<IQuestion>(data.questions.questions);
+                    const questions = shuffle<IQuestion>(data.questions.questions)
                     this.mapQuestions(questions)
                     this.setState({ cursor: data.questions.cursor })
                 })
                 .catch((err) => {
                     this.setState({ current: {} })
-                    console.log('Something went wrong...')
+                    console.log('Something went wrong...', err.message)
                 })
         }
     }
@@ -108,10 +108,9 @@ class Quiz extends Component<IProps, IState> {
         })
         let reformatted: Array<IQuestion> = []
         questions.map((question) => {
-            const choices = this.mapChoices(question.choices)
             const newQ = {
                 body: question.body,
-                choices: choices
+                choices: question.choices
             }
 
             reformatted.push(newQ)
@@ -122,6 +121,17 @@ class Quiz extends Component<IProps, IState> {
         
         console.log('donE')
     }
+
+    // mapChoices(choices: any) {
+    //     let formatted: any = {}
+    //     choices.map((choice: any) => {
+    //         formatted[choice.id] = {
+    //             body: choice.body,
+    //             correct: choice.correct
+    //         }
+    //     })
+    //     return formatted
+    // }
 
     queue(data: Array<IQuestion>) {
         this._queue = new Queue(data)
@@ -141,17 +151,6 @@ class Quiz extends Component<IProps, IState> {
         } else {
             this.fetch()
         }
-    }
-
-    mapChoices(choices: any) {
-        let formatted: any = {}
-        choices.map((choice: any) => {
-            formatted[choice.id] = {
-                body: choice.body,
-                correct: choice.correct
-            }
-        })
-        return formatted
     }
 
     handlerAnswerSelected(e: any) {
@@ -180,6 +179,10 @@ class Quiz extends Component<IProps, IState> {
         const isEmpty = Object.entries(this.state.current).length === 0 && this.state.current.constructor === Object
         // const isEmpty = true
 
+        const choices = isEmpty ? [] : shuffle<IChoice>(this.state.current.choices)
+        // const choices = this.state.current.choices
+        // console.log(choices)
+
         if (this.state.cursor === null ) {
             return (
                 <End 
@@ -202,7 +205,7 @@ class Quiz extends Component<IProps, IState> {
                         transitionAppearTimeout={500}
                     >
                         <div key={this.state.current.body}>
-                            <Question body={this.state.current.body} choices={this.state.current.choices} onAnswerSelected={this.handlerAnswerSelected} />
+                            <Question body={this.state.current.body} choices={choices} onAnswerSelected={this.handlerAnswerSelected} />
                         </div>
                     </ReactCSSTransitionGroup>
 

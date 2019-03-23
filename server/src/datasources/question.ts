@@ -1,4 +1,4 @@
-const Question = require('../db/models/question')
+import Question from '../db/models/question'
 
 const getQuestions = async () => {
     const found = await Question.find()
