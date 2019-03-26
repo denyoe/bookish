@@ -11,7 +11,7 @@ type Props = {
 const Question = ({ body, choices, onAnswerSelected }: Props) => {
     return (
         <div>
-            <h3 className="question">{body}</h3>
+            <h3 className="question">" { body } "</h3>
             <div>
                 <ul className="choice-list">
                     {

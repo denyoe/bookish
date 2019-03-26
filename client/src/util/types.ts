@@ -1,24 +1,29 @@
+import { shuffle } from './helper'
 export class Queue<T> {
-    private _queue: T[];
+    private _queue: T[]
 
     constructor(queue?: T[]) {
-        this._queue = queue || [];
+        this._queue = queue || []
     }
 
     enqueue(item: T) {
-        this._queue.push(item);
+        this._queue.push(item)
     }
 
     dequeue(): T | any {
-        return this._queue.shift();
+        return this._queue.shift()
     }
 
     clear() {
-        this._queue = [];
+        this._queue = []
     }
 
     get count(): number {
-        return this._queue.length;
+        return this._queue.length
+    }
+
+    shuffle() {
+        shuffle<T>(this._queue)
     }
 }
 
@@ -43,6 +48,10 @@ export class Stack<T> {
 
     get count(): number {
         return this._stack.length
+    }
+
+    shuffle() {
+        shuffle<T>(this._stack)
     }
 }
 

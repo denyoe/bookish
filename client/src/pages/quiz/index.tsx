@@ -48,20 +48,20 @@ class Quiz extends Component<IProps, IState> {
     }
 
     componentDidUpdate(prevProps: object, prevState: object) {
-        console.log('syncing...')
+        // console.log('syncing...')
         localStorage.setItem('state', JSON.stringify(this.state))
         localStorage.setItem('_queue', JSON.stringify(this._queue))
         localStorage.setItem('_missed', JSON.stringify(this._missed))
     }
 
     remotely() {
-        console.log('remotely')
+        // console.log('remotely')
 
         this.fetch()
     }
 
     locally() {
-        console.log('locally')
+        // console.log('locally')
 
         // Restore Queue
         const queue = JSON.parse(localStorage.getItem('_queue') || '')._queue
@@ -80,7 +80,7 @@ class Quiz extends Component<IProps, IState> {
 
         if( this.state.cursor === null ) {
             this.setState({ current: {} })
-            console.log('no more questions')
+            // console.log('no more questions')
             // no more questions at this time
         } else {
             apiClient
@@ -119,7 +119,7 @@ class Quiz extends Component<IProps, IState> {
         this.queue(reformatted)
         this.next()
         
-        console.log('donE')
+        // console.log('donE')
     }
 
     // mapChoices(choices: any) {
@@ -138,7 +138,7 @@ class Quiz extends Component<IProps, IState> {
     }
 
     next() {
-        console.log(this._queue)
+        // console.log(this._queue)
         if( this._queue.count ) {
             const dequeued = this._queue.dequeue()
             this.setState({
@@ -146,8 +146,8 @@ class Quiz extends Component<IProps, IState> {
                 total: this.state.total + 1
             })
 
-            console.log(this.state.current)
-            console.log(this._queue)
+            // console.log(this.state.current)
+            // console.log(this._queue)
         } else {
             this.fetch()
         }
@@ -168,9 +168,12 @@ class Quiz extends Component<IProps, IState> {
             })
         } else {
             this._missed.push(this.state.current)
+            // this._queue.enqueue(this.state.current)
+            this._queue.shuffle()
         }
 
         this.setState({ status: choice.correct })
+        // console.log('choice is' + choice.correct)
         // Display Correct Answer
         // Activate Next Button
     }

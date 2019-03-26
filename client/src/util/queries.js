@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const GET_QUESTIONS = gql`
         query questionList($after: String) {
-            questions(pageSize: 3, after: $after) {
+            questions(pageSize: 100, after: $after) {
                 cursor
                 hasMore
                 questions {
