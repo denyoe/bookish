@@ -6,6 +6,7 @@ const cache = new InMemoryCache()
 
 const link = new HttpLink({
 	uri: 'https://bookish.bleek.io/api'
+	// uri: process.env.API_URL
 	// uri: 'http://localhost:3003/'
 })
 
