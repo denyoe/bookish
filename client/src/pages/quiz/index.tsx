@@ -64,8 +64,14 @@ class Quiz extends Component<IProps, IState> {
 		// console.log('_missed', JSON.parse(localStorage.getItem('_missed') || 'null'))
 		// console.log('null', localStorage.getItem('_queued') === null)
 
-		const _queue = JSON.parse(localStorage.getItem('_queue') || 'null')
-		if (_queue && _queue._queue.length === 0) {
+		// const _queue = JSON.parse(localStorage.getItem('_queue') || 'null')
+		// if (_queue && _queue._queue.length === 0) {
+		// 	localStorage.clear()
+		// }
+
+		// localStorage.setItem('_corrupt', 'true')
+
+		if (localStorage.getItem('_corrupt') === 'true') {
 			localStorage.clear()
 		}
 	}
@@ -118,9 +124,7 @@ class Quiz extends Component<IProps, IState> {
                 .catch((err) => {
                     this.setState({ current: {}, loading: true })
 					console.log('Something went wrong...', err.message)
-					setTimeout(() => {
-						localStorage.clear()
-					}, 3000)
+					localStorage.setItem('_corrupt', 'true')
                 })
         }
     }
