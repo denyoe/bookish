@@ -5,7 +5,8 @@ import { HttpLink } from 'apollo-link-http'
 const cache = new InMemoryCache()
 
 const link = new HttpLink({
-	uri: 'http://localhost:3003/'
+	uri: 'https://bookish.bleek.io/api'
+	// uri: 'http://localhost:3003/'
 })
 
 export const apiClient = new ApolloClient({

@@ -6,7 +6,7 @@ import { GET_QUESTIONS } from '../../util/queries'
 import { Queue, Stack, IQuestion, IChoice } from '../../util/types'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import Progress from '../../components/Progress/Progress'
-import Feedback from '../../components/Feedback/Feedback'
+// import Feedback from '../../components/Feedback/Feedback'
 import End from '../../components/End/End'
 import { shuffle } from '../../util/helper'
 
@@ -121,7 +121,7 @@ class Quiz extends Component<IProps, IState> {
 
             reformatted.push(newQ)
         })
-        
+
         this.queue(reformatted)
         this.next()
         this.setState({loading: false})
@@ -161,7 +161,7 @@ class Quiz extends Component<IProps, IState> {
 
     handlerAnswerSelected(e: any) {
         const choice = JSON.parse(e.target.value)
-        
+
         // setTimeout(() => this.next(), 300)
         this.eval(choice)
         this.next()

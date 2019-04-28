@@ -21,13 +21,13 @@ const socialWindow = (url: string) => {
 }
 
 const End = ({score, total}: IProps) => {
-    const url = 'https%3A%2F%2Fbleek.io%2F'
+    const url = 'https%3A%2F%2Fbookish.bleek.io%2F'
     const text = 'Check+out+this+cool+Literature+Openings+Quiz+I+just+played.'
 
     const linkedin = 'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=Bookish&summary=' + text + '&source=bookish'
     const facebook = 'https://www.facebook.com/sharer.php?u=' + url
     const twitter = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + text + '&hashtags=literature,books,quiz'
-    
+
     return (
         <div className="end">
             <span className="stats">
@@ -49,14 +49,14 @@ const End = ({score, total}: IProps) => {
                     </p>
 
                     <p>
-                        You can reach me through <a href="https://twitter.com/marcusekon">twitter</a>, <a href="https://www.linkedin.com/in/marcek/">LinkedIn</a>, or <a href="https://www.instagram.com/marcusekon/">instagram</a> if you have any suggestions for improving this Quiz; or just to say Hi.
+					You can reach me through <a target="_" href="https://twitter.com/marcusekon">twitter</a>, <a target="_" href="https://www.linkedin.com/in/marcek/">LinkedIn</a>, or <a target="_" href="https://www.instagram.com/marcusekon/">instagram</a> if you have any suggestions for improving this Quiz; or just to say Hi.
                     </p>
 
                     <p>
                         In the meantime, if you wish to restart the Quiz, click <a href="#" onClick={clean}>here</a>.
                     </p>
             </div>
-            
+
             <div className="social">
                 <span>
                     <a target="_" onClick={() => socialWindow(facebook)} href={facebook}><i className="fab fa-facebook-f"></i></a>
