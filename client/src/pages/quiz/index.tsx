@@ -59,18 +59,6 @@ class Quiz extends Component<IProps, IState> {
 	}
 
 	fixStorageCorrupt() {
-		// console.log('_queue', JSON.parse(localStorage.getItem('_queue') || '{}'))
-		// console.log('state', localStorage.getItem('state') === null)
-		// console.log('_missed', JSON.parse(localStorage.getItem('_missed') || 'null'))
-		// console.log('null', localStorage.getItem('_queued') === null)
-
-		// const _queue = JSON.parse(localStorage.getItem('_queue') || 'null')
-		// if (_queue && _queue._queue.length === 0) {
-		// 	localStorage.clear()
-		// }
-
-		// localStorage.setItem('_corrupt', 'true')
-
 		if (localStorage.getItem('_corrupt') === 'true') {
 			localStorage.clear()
 		}
