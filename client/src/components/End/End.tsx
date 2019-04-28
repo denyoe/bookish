@@ -39,22 +39,22 @@ const End = ({score, total}: IProps) => {
 
             <div>
                 <h1>bookish.</h1>
-                <p>
+                    <p>
                         Hot Damn! Sadly, you have reached the end of this Quiz.
-                </p>
+                    </p>
 
                     <p>
                         But fear not! I'm hard at work crafting new questions
                         which should be available anytime now.
-                </p>
+                    </p>
 
                     <p>
                         You can reach me through <a href="https://twitter.com/marcusekon">twitter</a>, <a href="https://www.linkedin.com/in/marcek/">LinkedIn</a>, or <a href="https://www.instagram.com/marcusekon/">instagram</a> if you have any suggestions for improving this Quiz; or just to say Hi.
-                </p>
+                    </p>
 
                     <p>
                         In the meantime, if you wish to restart the Quiz, click <a href="#" onClick={clean}>here</a>.
-                </p>
+                    </p>
             </div>
             
             <div className="social">

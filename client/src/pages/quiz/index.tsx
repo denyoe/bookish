@@ -16,7 +16,8 @@ interface IState {
     total: number,
     count: number,
     cursor: string | null,
-    status: string
+    status: string,
+    loading: boolean
 }
 interface IProps {}
 
@@ -33,7 +34,8 @@ class Quiz extends Component<IProps, IState> {
             total: 0,
             count: 0,
             cursor: '0',
-            status: ''
+            status: '',
+            loading: true
         }
 
         this.handlerAnswerSelected = this.handlerAnswerSelected.bind(this)
@@ -79,7 +81,9 @@ class Quiz extends Component<IProps, IState> {
         console.log('fetching...@', this.state.cursor)
 
         if( this.state.cursor === null ) {
-            this.setState({ current: {} })
+            this.setState({ loading: true, current: {} })
+            setTimeout(() => this.setState({ loading: false }), 1000)
+
             // console.log('no more questions')
             // no more questions at this time
         } else {
@@ -93,10 +97,12 @@ class Quiz extends Component<IProps, IState> {
                 .then(({ data }) => {
                     const questions = shuffle<IQuestion>(data.questions.questions)
                     this.mapQuestions(questions)
-                    this.setState({ cursor: data.questions.cursor })
+
+                    const cursor = data.questions.hasMore === true ? data.questions.cursor : null
+                    this.setState({ cursor: cursor })
                 })
                 .catch((err) => {
-                    this.setState({ current: {} })
+                    this.setState({ current: {}, loading: true })
                     console.log('Something went wrong...', err.message)
                 })
         }
@@ -118,7 +124,7 @@ class Quiz extends Component<IProps, IState> {
         
         this.queue(reformatted)
         this.next()
-        
+        this.setState({loading: false})
         // console.log('donE')
     }
 
@@ -176,6 +182,13 @@ class Quiz extends Component<IProps, IState> {
         // console.log('choice is' + choice.correct)
         // Display Correct Answer
         // Activate Next Button
+        // if (! this._queue.count) {
+        //     // add delay for last question
+        //     setTimeout(() => this.next(), 300)
+        // } else {
+        //     this.next()
+        // }
+        // this.next()
     }
 
     render() {
@@ -183,44 +196,46 @@ class Quiz extends Component<IProps, IState> {
         // const isEmpty = true
 
         const choices = isEmpty ? [] : shuffle<IChoice>(this.state.current.choices)
-        // const choices = this.state.current.choices
-        // console.log(choices)
 
-        if (this.state.cursor === null ) {
+        if (this.state.loading) {
+            return <LoadingSpinner />
+        }
+
+        //  && this.state.loading === false
+
+        if ( this.state.cursor === null && isEmpty ) {
             return (
-                <End 
+                <End
                     score={this.state.score}
                     total={this.state.count}
                 />
             )
         }
 
-        return isEmpty ? (
-            <LoadingSpinner />
-        ) : (
-                <div>
-                    <ReactCSSTransitionGroup
-                        className="container"
-                        component="div"
-                        transitionName="fade"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={500}
-                        transitionAppearTimeout={500}
-                    >
-                        <div key={this.state.current.body}>
-                            <Question body={this.state.current.body} choices={choices} onAnswerSelected={this.handlerAnswerSelected} />
-                        </div>
-                    </ReactCSSTransitionGroup>
+        return (
+            <div>
+                <ReactCSSTransitionGroup
+                    className="container"
+                    component="div"
+                    transitionName="fade"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                    transitionAppearTimeout={500}
+                >
+                    <div key={this.state.current.body}>
+                        <Question body={this.state.current.body} choices={choices} onAnswerSelected={this.handlerAnswerSelected} />
+                    </div>
+                </ReactCSSTransitionGroup>
 
-                    {/* <Feedback
+                {/* <Feedback
                         status={this.state.status}
                     /> */}
 
-                    <Progress
-                        score={this.state.score}
-                        total={this.state.count}
-                    />
-                </div>
+                <Progress
+                    score={this.state.score}
+                    total={this.state.count}
+                />
+            </div>
         )
     }
 }

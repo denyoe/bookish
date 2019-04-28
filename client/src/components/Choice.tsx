@@ -29,11 +29,13 @@ class Choice extends Component<IProps, IState> {
     render() {
         const props = this.props
 
+        const className = props.body.correct === 'true' ? 'radioCustomButtonSuccess' : 'radioCustomButton'
+
         return (
             <li className="choice-item icobutton">
                 <input
                     type="radio"
-                    className="radioCustomButton"
+                    className={className}
                     name={"radioGroup" + props.question}
                     id={props.body.body}
                     value={JSON.stringify(props.body)}
