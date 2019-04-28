@@ -39,9 +39,11 @@ class Quiz extends Component<IProps, IState> {
         }
 
         this.handlerAnswerSelected = this.handlerAnswerSelected.bind(this)
-    }
+	}
 
     componentDidMount() {
+		this.fixStorageCorrupt()
+
         if (localStorage.getItem('_queue') === null || localStorage.getItem('state') === null ) {
             this.remotely()
         } else {
@@ -54,7 +56,19 @@ class Quiz extends Component<IProps, IState> {
         localStorage.setItem('state', JSON.stringify(this.state))
         localStorage.setItem('_queue', JSON.stringify(this._queue))
         localStorage.setItem('_missed', JSON.stringify(this._missed))
-    }
+	}
+
+	fixStorageCorrupt() {
+		// console.log('_queue', JSON.parse(localStorage.getItem('_queue') || '{}'))
+		// console.log('state', localStorage.getItem('state') === null)
+		// console.log('_missed', JSON.parse(localStorage.getItem('_missed') || 'null'))
+		// console.log('null', localStorage.getItem('_queued') === null)
+
+		const _queue = JSON.parse(localStorage.getItem('_queue') || 'null')
+		if (_queue && _queue._queue.length === 0) {
+			localStorage.clear()
+		}
+	}
 
     remotely() {
         // console.log('remotely')
@@ -103,7 +117,10 @@ class Quiz extends Component<IProps, IState> {
                 })
                 .catch((err) => {
                     this.setState({ current: {}, loading: true })
-                    console.log('Something went wrong...', err.message)
+					console.log('Something went wrong...', err.message)
+					setTimeout(() => {
+						localStorage.clear()
+					}, 3000)
                 })
         }
     }
