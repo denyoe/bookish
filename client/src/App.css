@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  /* padding: 52px 2vh; */
   padding: 52px 26px;
 }
 
@@ -57,21 +58,15 @@ a:hover {
 
 .container {
   position: relative;
-  height: 64vh;
+  min-height: 65vh;
   /* height: 45vh; */
   max-width: 800px;
   margin-bottom: 5vh;
   border-radius: 3px;
 }
 
-@media (min-width: 769px) {
-  .container {
-    margin: 2.5rem auto;
-  }
-}
-
 .choice-list {
-  margin: 0;
+  /* margin: 0; */
   padding: 0;
   list-style: none;
 }
@@ -105,15 +100,20 @@ a:hover {
 
 .radioCustomLabel {
   position: relative;
-  width: 100%;
+  width: -webkit-fill-available;
+  /* width: 100%; */
   margin: 0;
   padding: 1.5rem 0 1.5rem 0;
   line-height: 1.5;
+  /* text-align: justify;
+  padding-left: 20%; */
 }
 
 .radioCustomButton ~ .radioCustomLabel:before, .radioCustomButtonSuccess ~ .radioCustomLabel:before {
   position: absolute;
-  top: 20px;
+  /* top: 2.6vh; */
+  /* top: 21px; */
+  /* left: 0; */
   left: 38px;
   width: 28px;
   height: 28px;
@@ -171,3 +171,36 @@ a:hover {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  padding-bottom: 2vh;
+  list-style: none;
+}
+
+@media (min-width: 769px) {
+  .container {
+    margin: 2.5rem auto;
+  }
+}
+
+@media (max-width: 530px) {
+	.radioCustomButton ~ .radioCustomLabel:before, .radioCustomButtonSuccess ~ .radioCustomLabel:before {
+		position: absolute;
+		top: 3vh;
+		left: 0;
+	}
+
+	.radioCustomLabel {
+		text-align: justify;
+		padding-left: 20%;
+	}
+}
+

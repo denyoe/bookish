@@ -59,8 +59,10 @@ class Quiz extends Component<IProps, IState> {
 	}
 
 	fixStorageCorrupt() {
-		if (localStorage.getItem('_corrupt') === 'true') {
+		const corrupt = localStorage.getItem('_corrupt')
+		if (corrupt === null || corrupt === 'true') {
 			localStorage.clear()
+			localStorage.setItem('_corrupt', 'false')
 		}
 	}
 
@@ -107,7 +109,8 @@ class Quiz extends Component<IProps, IState> {
                     this.mapQuestions(questions)
 
                     const cursor = data.questions.hasMore === true ? data.questions.cursor : null
-                    this.setState({ cursor: cursor })
+					this.setState({ cursor: cursor })
+					localStorage.setItem('_corrupt', 'false')
                 })
                 .catch((err) => {
                     this.setState({ current: {}, loading: true })
