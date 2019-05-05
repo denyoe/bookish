@@ -2,13 +2,13 @@ import React from 'react'
 import './End.css'
 
 interface IProps {
-    score: number,
-    total: number
+	score: number,
+	total: number
 }
 
 const clean = () => {
     localStorage.clear()
-    location.reload()
+	location.reload()
 }
 
 const socialWindow = (url: string) => {
@@ -22,7 +22,7 @@ const socialWindow = (url: string) => {
 
 const End = ({score, total}: IProps) => {
     const url = 'https%3A%2F%2Fbookish.bleek.io%2F'
-    const text = 'Check+out+this+cool+Literature+Openings+Quiz+I+just+played.'
+	const text = 'Check+out+this+cool+Literature+Openings+Quiz+I+just+crushed.'
 
     const linkedin = 'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=Bookish&summary=' + text + '&source=bookish'
     const facebook = 'https://www.facebook.com/sharer.php?u=' + url

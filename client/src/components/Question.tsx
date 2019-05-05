@@ -2,13 +2,13 @@ import React from 'react'
 import Choice from './Choice'
 import { IQuestion, IChoice } from '../util/types'
 
-type Props = {
+interface IProps {
     body: string,
     choices: any,
     onAnswerSelected: Function
 }
 
-const Question = ({ body, choices, onAnswerSelected }: Props) => {
+const Question = ({ body, choices, onAnswerSelected }: IProps) => {
     return (
         <div>
             <h3 className="question">" { body } "</h3>

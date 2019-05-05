@@ -19,7 +19,7 @@ class Choice extends Component<IProps, IState> {
     //     return Math.floor(Math.random() * (max - min + 1) + min)
     // }
 
-    componentDidMount() {}
+    // componentDidMount() {}
 
 
     handlerChoiceSelected(e: any) {
@@ -41,7 +41,7 @@ class Choice extends Component<IProps, IState> {
                     value={JSON.stringify(props.body)}
                     onChange={this.handlerChoiceSelected}
                 />
-                
+
                 <label className="radioCustomLabel" htmlFor={props.body.body}>
                     {props.body.body}
                 </label>

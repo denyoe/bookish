@@ -101,6 +101,7 @@ a:hover {
 .radioCustomLabel {
   position: relative;
   width: -webkit-fill-available;
+  width: -moz-available;
   /* width: 100%; */
   margin: 0;
   padding: 1.5rem 0 1.5rem 0;
@@ -126,9 +127,9 @@ a:hover {
   transition: all 0.3s;
 }
 
-.radioCustomButton:checked ~ .radioCustomLabel:before, .radioCustomButtonSuccess:checked ~ .radioCustomLabel:before {
+.radioCustomButton:checked ~ .radioCustomLabel:before {
   content: '';
-  background: #776859 url(./img/icon-check.svg) no-repeat;
+  background: #776859 url(./img/multiply.svg) no-repeat;
   background-size: 27px;
   border-color: #776859;
 }
@@ -203,4 +204,3 @@ li {
 		padding-left: 20%;
 	}
 }
-

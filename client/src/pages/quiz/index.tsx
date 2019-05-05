@@ -8,16 +8,19 @@ import LoadingSpinner from '../../components/LoadingSpinner'
 import Progress from '../../components/Progress/Progress'
 // import Feedback from '../../components/Feedback/Feedback'
 import End from '../../components/End/End'
+import Start from '../../components/Start/Start'
 import { shuffle } from '../../util/helper'
 
 interface IState {
     current: any,
-    score: number,
+	score: number,
+	missed: number,
     total: number,
     count: number,
     cursor: string | null,
     status: string,
-    loading: boolean
+	loading: boolean,
+	start: boolean
 }
 interface IProps {}
 
@@ -30,15 +33,18 @@ class Quiz extends Component<IProps, IState> {
 
         this.state = {
             current: {},
-            score: 0,
+			score: 0,
+			missed: this._missed.count,
             total: 0,
             count: 0,
             cursor: '0',
             status: '',
-            loading: true
+			loading: true,
+			start: false
         }
 
-        this.handlerAnswerSelected = this.handlerAnswerSelected.bind(this)
+		this.handlerAnswerSelected = this.handlerAnswerSelected.bind(this)
+		this.onStart = this.onStart.bind(this)
 	}
 
     componentDidMount() {
@@ -76,12 +82,14 @@ class Quiz extends Component<IProps, IState> {
         // console.log('locally')
 
         // Restore Queue
-        const queue = JSON.parse(localStorage.getItem('_queue') || '')._queue
+		const queue = JSON.parse(localStorage.getItem('_queue') || '')._queue
+		const missed = JSON.parse(localStorage.getItem('_missed') || '')._stack
         // if (this.state.cursor !== null && queue.length == 0 ) {
         //     this.setState({ cursor: null })
         //     this.remotely()
         // }
-        this.queue(queue)
+		this.queue(queue)
+		this._missed = new Stack(missed)
         // Restore State
         const state = JSON.parse(localStorage.getItem('state') || '')
         this.setState(state)
@@ -153,7 +161,7 @@ class Quiz extends Component<IProps, IState> {
 
     queue(data: Array<IQuestion>) {
         this._queue = new Queue(data)
-    }
+	}
 
     next() {
         // console.log(this._queue)
@@ -201,13 +209,22 @@ class Quiz extends Component<IProps, IState> {
         //     this.next()
         // }
         // this.next()
-    }
+	}
+
+	onStart() {
+		console.log('starting quiz')
+		this.setState({ start: true })
+	}
 
     render() {
         const isEmpty = Object.entries(this.state.current).length === 0 && this.state.current.constructor === Object
         // const isEmpty = true
 
-        const choices = isEmpty ? [] : shuffle<IChoice>(this.state.current.choices)
+		const choices = isEmpty ? [] : shuffle<IChoice>(this.state.current.choices)
+
+		if (! this.state.start) {
+			return <Start onStart={this.onStart} />
+		}
 
         if (this.state.loading) {
             return <LoadingSpinner />
@@ -222,7 +239,11 @@ class Quiz extends Component<IProps, IState> {
                     total={this.state.count}
                 />
             )
-        }
+		}
+
+		const missed = this._missed.count
+
+		console.log(missed, this._missed)
 
         return (
             <div>
@@ -244,7 +265,8 @@ class Quiz extends Component<IProps, IState> {
                     /> */}
 
                 <Progress
-                    score={this.state.score}
+					score={this.state.score}
+					missed={missed}
                     total={this.state.count}
                 />
             </div>
